@@ -1,0 +1,119 @@
+#!/bin/bash 
+# Luke Olson, CSE224, 10/26/2022, PA3
+
+# This program is a stick game played against you and a computer.
+# You may play with as many sticks as you like, but the default is 21
+# I have defined two functions for use inside this script, computerMove and displayStick 
+# The main game is played in a while loop, condition is [[ while sticks greater than 0 ]]
+
+
+# Defining functions
+
+computerMove() {
+        declare -i stickInp
+        declare -i move
+             
+        stickInp=$1
+
+        move=$(($stickInp%5))
+
+        if [[ $move -eq 0 ]]
+        then
+                move=1
+        fi
+        
+        echo "$move"
+
+}
+
+displayStick () {
+        declare  stick
+        declare -i stickInp
+        declare -i stickCount
+        declare stickTot
+
+        stickCount=0
+        stickInp=$1
+        stick="|"
+        
+        while [[ $stickCount -lt $stickInp ]]
+        do 
+                echo -n "|"
+                stickCount=$(($stickCount+1))
+        done
+
+        echo -n -e " ($stickInp)\n"     
+}
+
+# Beginning of script. Declare variabels, configure stick count, and echo introduction.
+declare -i sticks	# sticks during game, will be decremented to 0
+declare -i usrSticks	# sticks to play game with, passed at runtime
+declare -i turn		# keeps track of whose turn it is so program knows who won
+declare -i cMove	# will save value of computerMove
+
+stickGraphic="|"
+
+usrSticks=$1
+
+if [[ $usrSticks -gt 0 ]]
+then
+	sticks=$usrSticks
+else
+	sticks=21
+fi 	
+
+
+echo "Welcome to the stick picking game"
+echo "Take 1 2 or 3 sticks per move"
+echo "Whoever takes the last stick wins. Good luck!"
+displayStick $sticks
+
+# Beginning of gameloop.
+while [[ $sticks -gt 0 ]]
+do
+	turn=1
+	echo -n "How many sticks would you like to take?: "
+	read take
+
+	if [[ $take -gt 4 || $take -lt 1 ]]
+	then
+		echo "Please input an integer from 1-4"
+		continue
+	fi 
+
+	sticks=$(($sticks-$take))
+
+	if [[ $sticks -eq 0 ]]
+	then
+		break
+	fi
+
+	displayStick $sticks
+	
+	turn=0
+	cMove=$(computerMove $sticks)
+
+	echo "Computer has taken $cMove sticks"
+
+	sticks=$(($sticks-$cMove))
+
+	if [[ $sticks -eq 0 ]]
+	then
+		break
+	fi
+
+	displayStick $sticks
+done
+
+
+# Decide who won the game.
+if [[ $sticks -eq 0 ]] && [[ $turn -eq 0 ]]
+then
+	echo "Computer wins! Try again next time."
+elif [[ $sticks -eq 0 ]] && [[ $turn -eq 1 ]] 
+then
+	echo "You win! Good job."
+fi
+
+
+

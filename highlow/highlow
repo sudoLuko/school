@@ -1,0 +1,87 @@
+#!/bin/bash
+# Luke Olson, CSE 224, 11/03/2022, PA4
+
+
+declare -i high
+declare -i progHigh
+declare -i low
+declare -i guess
+declare -i guessCount
+
+guess=0
+high=100
+low=1
+guessCount=1
+
+highInp=$1
+
+if [[ ! $1 -eq 0 ]]
+then
+    high=$1
+fi
+
+echo "Welcome to highlow!"
+echo "You will pick a number, and I will try to guess it"
+echo "Use [L/l] if my guess is low, [H/h] if it's high, and [C/c] when I am correct"
+echo "..."
+echo "Now, think of a number between $low-$high"
+echo "Press any key to play"
+
+read -rsn1 playNow
+
+if [[ playNow ]]
+then
+    
+    while [[ 1 -eq 1 ]] 
+    do
+        guess=$((($high+$low)/2));
+
+        if [[ $high -eq $low || $(($high-$low)) == 1 ]]
+        then
+            if [[ $guess == $(($high-1)) ]]
+            then
+                guess=$high;
+            fi
+
+            echo "Guess: $guess"
+            read -rsn1 input;
+
+            if [[ $input == c || $input == C ]] 
+            then
+                echo "Correct! It took $guessCount guesses to guess correctly"
+                echo "Your number was $guess"
+                break
+            elif [[ ! $input == c || ! $input == C ]]
+            then
+                echo "Cheating has been detected. You input that $high was to high and $low was low." 
+                echo "Game will exit now."
+                break
+            fi
+        fi
+
+        echo "Guess: $guess"
+
+        read -rsn1 input
+
+        if [[ $input == c || $input == C ]] 
+        then
+            echo "Correct! It took $guessCount guesses to guess correctly"
+            echo "Your number was $guess"
+            break
+        elif [[ $input == h || $input == H ]]
+        then
+            high=$guess # these lines are causing some bugs
+            guessCount=$(($guessCount+1))
+            continue
+        elif [[ $input == l || $input == L ]]
+        then
+            low=$guess # these lines are causing some bugs
+            guessCount=$(($guessCount+1))
+            continue
+        else
+            echo "Input not recognized. Please enter a H, L, or C"   
+            continue
+        fi
+
+    done
+fi
