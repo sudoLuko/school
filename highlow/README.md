@@ -12,3 +12,6 @@ This program will play a game of high-low with you. You pick a number and the co
 1. Make file on local machine to clone repository into
 2. Run `git clone https://github.com/sudoLuko/school/highlow.git`
 3. Change into project file `cd highlow`, run exectuable `./highlow`
+
+### Output
+<img src="../img/highlow.jpg">
