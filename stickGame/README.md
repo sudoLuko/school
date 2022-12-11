@@ -2,7 +2,7 @@
 
 ### Summary
 
-Stick is a simple game. You are playing the computer. Given an initial (default is 21) number of sticks in a pile, players will take turns remoing either 12, or 3 sticks from the pile. Whoever removes the last stick wins the game.
+Stick is a simple game that you play against the computer. Given an initial (default is 21) number of sticks in a pile, players will take turns removing either 1, 2, or 3 sticks from the pile. Whoever removes the last stick wins the game.
 
 I made two implementations of this. One in C and another in Bash.
 
