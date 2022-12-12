@@ -14,11 +14,11 @@ I made two implementations of this. One in C and another in Bash.
 
 ### Install
 1. Make file on local machine to clone repository into
-2. Run `git clone https://github.com/sudoLuko/school/stickGame.git`
+2. Run `git clone https://github.com/sudoLuko/school.git`
 3. **C:**
-	Change into project file `cd stickGame`, compile code for c program `gcc -o main main.c` and run `./main`
+	Change into project file `cd school` -> `cd stickGame`, compile code for c program `gcc -o main main.c` and run `./main`
 4. **Bash:**
-	Change into project file `cd stickGame`, run executable `./stick`
+	Change into project file `cd school` -> `cd stickGame`, run executable `./stick`
 
 ### Output
 <img src="../img/stick.jpg">
