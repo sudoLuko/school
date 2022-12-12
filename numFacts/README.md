@@ -12,8 +12,8 @@ numFacts is a simple program that will request you to input an integer (N). Afte
 
 ### Install
 1. Make file on local machine to clone repository into
-2. Run `git clone https://github.com/sudoLuko/school/numFacts.git`
-3. Change into project file `cd numFacts`, compile main.c `gcc -o main main.c`, run exectuable `./main`
+2. Run `git clone https://github.com/sudoLuko/school.git`
+3. Change into project file `cd school` -> `cd numFacts`, compile main.c `gcc -o main main.c`, run exectuable `./main`
 
 ### Output
 <img src="../img/numfacts1.jpg" style="vertical-align:left">
